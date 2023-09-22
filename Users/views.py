@@ -26,9 +26,7 @@ def register(request):
 
         if form.is_valid():
             form.save()
-            
-            user = User.objects.get(email__exact=jsondata['email'])
-            serialized = userSerializer(user)
+            serialized = userSerializer(form.instance)
 
             return Response(serialized.data)
         else:
